@@ -1,62 +1,76 @@
-# PC1: Consolidación de conocimientos de Pandas, SQL y NoSQL
+# MBIT-PC1-Jose_Luis_Sanchez
 
-## Objetivo
-Este proyecto tiene como objetivo consolidar conocimientos sobre la manipulación de datos con Pandas, el manejo de bases de datos relacionales (SQLite) y la preparación de los datos para una posible inserción en bases de datos 
-no relacionales (MongoDB). El tiempo estimado de trabajo es de 2-3 horas por alumno.
+## Estructura de Archivos
 
----
+```
+MBIT-PC1-Jose_Luis_Sanchez/
+├── data/                     # Directorio para datasets
+│   ├── raw/                 # Datos originales
+│   └── processed/           # Datos procesados
+├── notebooks/               # Jupyter notebooks
+│   └── wine_analysis.ipynb  # Notebook principal
+├── src/                     # Código fuente
+│   └── utils/              # Funciones auxiliares
+├── requirements.txt         # Dependencias
+└── README.md               # Documentación
+```
 
-## Instrucciones detalladas
+## Dependencias Iniciales
 
-### 1. Descarga de datos
-- Descarga los datasets para vinos tintos y blancos desde la siguiente URL: [Wine Quality Dataset](http://archive.ics.uci.edu/dataset/186/wine+quality).
-- Asegúrate de que ambos datasets se encuentren disponibles en tu entorno de trabajo como archivos CSV.
-- Idealmente, intenta llevarlo a cabo de manera programática para no tener que hacer operaciones manualmente.
+El archivo `requirements.txt` contiene las siguientes dependencias:
 
-### 2. Combinar los datos
-- Usa Pandas para cargar ambos datasets en dataframes en memoria.
-- Combina los datos en un único dataframe añadiendo una columna adicional que indique el tipo de vino (`red` o `white`).
-- ¿Cuántos registros tenemos? ¿Cuántas variables y de qué tipo?
+- pandas
+- numpy
+- sqlite3
+- jsonlines
+- matplotlib
+- seaborn
+- jupyter
+- requests
 
-### 3. Filtrar atípicos y manejar datos ausentes
-- Realiza un análisis estadístico o inspección visual de cada columna numérica para identificar valores atípicos.
-- Usa Pandas para filtrar y eliminar los datos atípicos y los valores ausentes. Explica en tu entrega qué criterios utilizaste para identificar los atípicos.
+## Plan de Implementación por Fases
 
-### 4. Almacenar los datos limpios en SQLite
-- Usa SQLite para almacenar el dataframe limpio en una base de datos persistente.
-- Sigue la documentación oficial de SQLite: [SQLite Python Documentation](https://docs.python.org/3/library/sqlite3.html).
+### Fase 1: Configuración Inicial
 
-### 5. Realizar 3 consultas en SQLite
-Basándote en los datos y las columnas del dataset, realiza las siguientes consultas:
-1. **Consulta 1**: ¿Cuál es el promedio de calidad (`quality`) por tipo de vino (`type`)?
-2. **Consulta 2**: ¿Cuántos vinos tienen un nivel de alcohol superior a 10.5, agrupados por tipo?
-3. **Consulta 3**: Obtén el conteo de vinos por nivel de acidez (`fixed acidity`) agrupados en rangos (por ejemplo, de 0-5, 5-10, 10-15).
+1. Crear la estructura de directorios
+2. Inicializar el entorno virtual
+3. Instalar dependencias
+4. Configurar Git para commits
 
-### 6. Exportar datos a JSONLines
-De cara a una potencial insercion en una base de datos noSQL como `mongoDB`, podemos servirnos de pandas para preparar los datos. 
-- ¿Qué estructura de datos de python es la más similar a un documento noSQL? 
-- Usa Pandas para transformar los datos de una de las consultas en un archivo JSONLines.
-- Usa la librería `jsonlines` para guardar el archivo.
-- ¿Qué problemas podrían surgir al transformar un dataframe en jsonlines? 
-- Añade una columna que sea originalmente un `np.array`,¿qué sucede al transformarlo en jsonlines? 
-- Añade una columna que sea originalmente un `pd.datetime`,¿qué sucede al transformarlo en jsonlines?
+### Fase 2: Adquisición de Datos
 
-### 7. Análisis de calidad de los vinos
-- Inspecciona qué caracteriza a los vinos tintos y blancos con mayor calidad (`quality`).
-- Usa análisis estadístico, gráficos o cualquier técnica que consideres relevante para identificar patrones.
+1. Crear función para descargar datasets
+2. Implementar verificación de integridad
+3. Guardar datasets en data/raw/
 
----
+### Fase 3: Procesamiento de Datos
 
-## Notas adicionales para la entrega
-- Asegúrate de documentar cada paso en tu entrega y justificar tus decisiones (por ejemplo, cómo identificaste los atípicos).
-- El entregable principal será un Jupyter notebook con todos los pasos que habéis seguido y las explicaciones que consideréis pertinentes.
-- Incluye en un fichero requirements.txt todas las librerías que estés utilizando.
-- La entrega se hará tanto a través de Leemons como en el repositorio de Git asignado para el proyecto.
-- Cada grupo debe trabajar en su propia rama del repositorio de [Git](https://github.com/francisco-mbit/PC1).
-  - Logead el esfuerzo en diferentes commits, asegurándoos de realizar al menos un commit por persona.
-  - Realizad un commit final con el mensaje: **ENTREGA FINAL**.
+1. Cargar datasets con pandas
+2. Combinar datasets
+3. Análisis exploratorio inicial
+4. Detección y manejo de atípicos
 
----
+### Fase 4: Base de Datos
 
-¡Buena suerte con el proyecto! 😊
+1. Crear conexión SQLite
+2. Diseñar esquema de tabla
+3. Implementar consultas requeridas
 
+### Fase 5: Exportación NoSQL
+
+1. Transformación a formato JSON
+2. Manejo de tipos especiales
+3. Exportación a JSONLines
+
+### Fase 6: Análisis de Calidad
+
+1. Análisis estadístico
+2. Visualizaciones
+3. Documentación de hallazgos
+
+## Consideraciones Técnicas
+
+- Usar Git para control de versiones
+- Documentar cada paso en el notebook
+- Implementar manejo de errores
+- Seguir PEP 8 para estilo de código
