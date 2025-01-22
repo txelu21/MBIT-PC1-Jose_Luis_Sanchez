@@ -1,0 +1,11 @@
+#If you prefer to use conda, you can use the environment.yml file instead:
+# conda env create -f environment.yml
+
+pandas
+numpy
+sqlite3
+jsonlines
+matplotlib
+seaborn
+jupyter
+requests
